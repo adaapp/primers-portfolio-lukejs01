@@ -93,6 +93,59 @@ void passwordComplexityChecker(void) {
 }
 
 
+
+
+
+#include <list>
+#include <boost/algorithm/string.hpp>
+
+std::string lowString(std::string& name){ // converts user input to lower case
+  transform(name.begin(), name.end(), name.begin(), ::tolower);
+  return name;
+}
+
+std::list<std::string> toLower(std::list<std::string>& names){ // converts all names in list to lowercase
+  std::list<std::string> lowList = {}; // declaring lower case list
+  std::string lowName = ""; // place holder variable
+  for(auto i : names){ // loops through elements in the list
+    transform(i.begin(), i.end(), i.begin(), ::tolower); // converts each element to lower case
+    lowName = i;
+    lowList.push_back(lowName); // adds it to new list
+  }
+  return lowList; // returns new list
+}
+
+void displayNames(std::list<std::string>& names){ // displays all elements in the list
+  for(auto i : names){ // loops through list
+    std::cout << i << "\n"; // outputs element
+  }
+}
+
+std::list<std::string> removeFromList(std::list<std::string> names, std::string name){
+  for(auto i : names){ // removing name from list
+    if(i == name){ // if user input matches an name in the list
+      names.remove(name); // remove the name from the list
+      return names; // return the adjusted list
+    }
+  }
+
+  return names; // not matched then return the original list
+}
+
 void employeeListRemoval(void) {
-	std::cout << " - employeeListRemoval: not yet implemented\n\n";
+	std::string userInput = ""; // declaring variables
+  std::list<std::string> names = {"John Smith", "Jaelynn Stuart", "Kaley Barajas", "Walter Collier", "Cale Myers"};
+  int nofemp = names.size();
+
+  std::cout << "There are " << nofemp << " employees:\n";
+  displayNames(names); // see above
+
+  std::cout << "\nEnter an employee name to remove: ";
+  std::getline(std::cin, userInput); // gets user input
+
+  names = removeFromList(toLower(names), lowString(userInput)); // converts both list and user input to lower case, then removes from list if user input matches a name
+
+  nofemp = names.size();
+  std::cout << "\nThere are " << nofemp << " employees: \n";
+  displayNames(names); // displays new adjusted list
 }
