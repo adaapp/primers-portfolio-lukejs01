@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>  
 
-bool isNumber1(std::string value){ // checks whether the character matches with a digit
+bool isNumbercheck(std::string value){ // checks whether the character matches with a digit
   std::string c = value;
   char number [10] = {'0','1','2','3','4','5','6','7','8','9'}; // array of digits
   for(char& count : c){
@@ -25,7 +25,7 @@ std::vector<std::string> findInList(std::vector<std::string> data, std::string i
   std::vector<std::string> inputList = {};
   std::string word;
 
-  if(!isNumber(input)){ // checks whether input is number - determines the list searched through
+  if(!isNumbercheck(input)){ // checks whether input is number - determines the list searched through
     for(auto c : dataList){ // loops through list
       word = c; // assigns count to a string variable for comparison 
       if(check == true){ // used to check whether the iteration before was a match so the associated data can be added to the list
@@ -39,7 +39,7 @@ std::vector<std::string> findInList(std::vector<std::string> data, std::string i
     }
   }
   
-  if(isNumber(input)){ // checks if number
+  if(isNumbercheck(input)){ // checks if number
       std::reverse(reverse.begin(),reverse.end()); // if number then list is reversed so numbers are read first
       for(auto i : reverse){ 
         word = i; 
