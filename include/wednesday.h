@@ -130,7 +130,67 @@ void phoneDirectory(void) {
   DataFileParser();
 }
 
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <iomanip>
+
+
+void FileParser() {
+
+  // declare file and name
+  const int MARGIN_BUFFER = 5;
+	const int INITIAL = 0;
+	const int LASTNAME = 1;
+	const int SALARY = 2;
+
+	const std::string FILE_NAME = "employees.csv";
+  std::ifstream file(FILE_NAME);
+
+  std::string line;
+  std::vector<std::vector<std::string>> records; // 2d vector to hold all rows
+	int widths[3] = {0, 0, 0}; // array to hold widths of columns
+
+  while(getline(file, line)) {
+    // setup variables to split each record into
+    std::stringstream stream(line);
+    std::string field;  
+    std::vector<std::string> rowList;
+
+    int index = 0;
+    while(getline(stream, field, ',')) { // split the row into a fields where there are commas
+      if (field.length() > widths[index]) { // keep a running tally of the length of the longest word for spacing
+        widths[index] = field.length();
+      }
+      index++; // keep track of which column
+      rowList.push_back(field); // push this new word to the row list
+    }
+    records.push_back(rowList); // push this record onto the list of all rows
+  }
+
+  file.close();
+
+  // first two lines printed based off of the spacing we calculated earlier
+  std::cout << std::right << std::setw(widths[INITIAL] - 4) << "Initial" << std::setw(widths[LASTNAME] + MARGIN_BUFFER - 11) << "Last" << std::setw(widths[SALARY] + MARGIN_BUFFER + 4)  << "Salary"<< std::endl;  
+  std::cout << std::setw(widths[INITIAL]- 4) << "--------" << std::setw(widths[LASTNAME] + MARGIN_BUFFER - 6) << "----------" << std::setw(widths[SALARY] + MARGIN_BUFFER ) << "--------" << std::endl;
+  
+  for (int i = 0; i < records.size(); i++) { // for each record in the 2d vector
+    for (int j = 0; j < records[i].size(); j++) { // for each field in each record
+      if (j == INITIAL) { // if the field is an initial
+        std::string initial = std::string(1, records[i][j].at(0)) + ".";
+        std::cout << std::setw(widths[j]- 10) << initial; // space using the widths we calculated earlier
+      }
+      if (j == LASTNAME) { // if the field is a lastname
+        std::cout << std::setw(widths[j] + MARGIN_BUFFER + 2) << records[i][j];
+      }
+      if (j == SALARY) { // if the field is a salary
+        std::cout << std::left << "£" << records[i][j];
+      }
+    }
+    std::cout << std::endl;
+  }
+}
 
 void dataFileParser(void) {
-	std::cout << " - dataFileParser: not yet implemented\n\n";
+	FileParser();
 }
