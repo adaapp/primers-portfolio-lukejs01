@@ -18,6 +18,30 @@ void sleepTimer(void) {
 }
 
 
+
+
+void thread_function(){ // hard coded thread for 5 seconds
+  std::cout << "Thread1: " << std::this_thread::get_id() << " started\n"; //displays start of thread
+  SleeperTimer(5); // thread sleeps for 5 seconds
+  std::cout << "Thread1 " << std::this_thread::get_id() << " ended\n"; // thread ends
+}
+
+void thread_function2(){ // hard coded thread for 10 seconds
+  std::cout << "Thread2: " << std::this_thread::get_id() << " started\n"; //displays start of thread
+  SleeperTimer(10); // thread sleeps for 10 seconds
+  std::cout << "Thread2 " << std::this_thread::get_id() << " ended\n"; // thread ends
+}
+
+void threadMaker(){
+  std::cout << "Main thread: " << std::this_thread::get_id() << " started\n"; // displays main thread start
+  std::thread t(&thread_function); // starts thread 1
+  std::thread y(&thread_function2); // starts thread 2
+  t.join(); // blocks the calling thread’s execution until the specified thread terminates
+  y.join();
+  
+std::cout << "Main thread: " << std::this_thread::get_id() << " ended\n";
+} // displays end of main thread
+
 void joinDetachThreads(void) {
-	std::cout << " - joinDetachThreads: not yet implemented\n\n";
+	threadMaker();
 }
