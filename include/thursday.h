@@ -18,8 +18,6 @@ void sleepTimer(void) {
 }
 
 
-
-
 void thread_function(){ // hard coded thread for 5 seconds
   std::cout << "Thread1: " << std::this_thread::get_id() << " started\n"; //displays start of thread
   SleeperTimer(5); // thread sleeps for 5 seconds
@@ -32,6 +30,18 @@ void thread_function2(){ // hard coded thread for 10 seconds
   std::cout << "Thread2 " << std::this_thread::get_id() << " ended\n"; // thread ends
 }
 
+
+void detachThreads(){ // detach thread function
+  std::cout << "Main thread: " << std::this_thread::get_id() << " started\n"; // displays main thread start
+  std::thread t(&thread_function); 
+  std::thread y(&thread_function2);// starts a thread
+  t.detach(); // detaches the thread
+  y.detach(); 
+  
+  
+  std::cout << "Main thread: " << std::this_thread::get_id() << " ended\n";// displays end of main thread
+}
+
 void threadMaker(){
   std::cout << "Main thread: " << std::this_thread::get_id() << " started\n"; // displays main thread start
   std::thread t(&thread_function); // starts thread 1
@@ -39,8 +49,12 @@ void threadMaker(){
   t.join(); // blocks the calling thread’s execution until the specified thread terminates
   y.join();
   
-std::cout << "Main thread: " << std::this_thread::get_id() << " ended\n";
-} // displays end of main thread
+  std::cout << "Main thread: " << std::this_thread::get_id() << " ended\n";// displays end of main thread
+
+
+  detachThreads();
+} 
+
 
 void joinDetachThreads(void) {
 	threadMaker();
