@@ -169,6 +169,86 @@ void carClass(void) {
 }
 
 
+class area{
+  private: // private variables accessed only in the class
+    float h = 0;
+    float w = 0;
+    float b = 0;
+    
+    void init_area(float height, float width, float base){
+      h = height;
+      w = width;
+      b = base;
+    }
+
+  public:
+    area(float h){ // constructor for square
+      init_area(h, 0, 0); // initialises class
+      std::cout << "Area of square(h= " << h << "): " << calculateArea() << "\n"; // calls the calculate function and displays answer
+    }
+    
+    area(float h, float w){ // constructor for rectangle
+        init_area(h, w, 0);
+        std::cout << "Area of rectangle(h= " << h << ", w= " << w << "): " << calculateArea() << "\n";
+    }
+
+    area(float h, float w, float b){ // constructor for trapezoid
+      init_area(h, w, b);
+      std::cout << "Area of trapezoid(h= " << h << ", w= " << w << ", b= " << b <<"): " << calculateArea() << "\n";
+    }
+
+    
+
+    // getters and setters for properties
+    void setHeight(float height){
+      h = height;
+    }
+
+    float getHeight(void){
+      return h;
+    }
+
+    void setWidth(float width){
+      w = width;
+    }
+
+    float getWidth(void){
+      return w;
+    }
+
+    void setBase(float base){
+      b = base;
+    }
+
+    float getBase(void){
+      return b;
+    }
+
+    float calculateArea(){
+      float area = 0.0;
+      
+      if(h != 0 && w != 0 && b != 0){ // checks which values are present
+        area = ((b+w) * h)/2; // calculates area using formula
+      }
+      if(h != 0 && w != 0 & b == 0){ // checks which values are present
+        area = h * w; // calculates area using formula
+      }
+      if(h != 0 && w == 0 && b == 0){ // checks which values are present
+        area = h * h; // calculates area using formula
+      }
+      return area; // returns the area
+    }
+
+};
+
+
+
+void findingArea(){
+  area(6.1); // creates instance of the area class according to arguments 
+  area(4,5.9);
+  area(7.5,6,14);
+}
+
 void areaOf(void) {
-		std::cout << " - areaOf: not yet implemented\n\n";
+	findingArea();
 }
