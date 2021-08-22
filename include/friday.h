@@ -184,17 +184,17 @@ class area{
   public:
     area(float h){ // constructor for square
       init_area(h, 0, 0); // initialises class
-      std::cout << "Area of square(h= " << h << "): " << calculateArea() << "\n"; // calls the calculate function and displays answer
+      std::cout << "Area of square(h= " << h << "): " << size() << "\n"; // calls the calculate function and displays answer
     }
     
     area(float h, float w){ // constructor for rectangle
         init_area(h, w, 0);
-        std::cout << "Area of rectangle(h= " << h << ", w= " << w << "): " << calculateArea() << "\n";
+        std::cout << "Area of rectangle(h= " << h << ", w= " << w << "): " << size() << "\n";
     }
 
     area(float h, float w, float b){ // constructor for trapezoid
       init_area(h, w, b);
-      std::cout << "Area of trapezoid(h= " << h << ", w= " << w << ", b= " << b <<"): " << calculateArea() << "\n";
+      std::cout << "Area of trapezoid(h= " << h << ", w= " << w << ", b= " << b <<"): " << size() << "\n";
     }
 
     
@@ -224,7 +224,7 @@ class area{
       return b;
     }
 
-    float calculateArea(){
+    float size(){
       float area = 0.0;
       
       if(h != 0 && w != 0 && b != 0){ // checks which values are present

@@ -36,7 +36,7 @@ To break down the challenge:
 * Calculate the complexity of the password
 * Return an int that represents a complexity
 
-#### Challenges
+#### Reflection
 The biggest problem I had when coding this was the order of each if statement when executing. In my first prototype the order of my if statements were incorrect so it was returning the wrong int. I had to refactor the code to return the correct int so the if statements had to be reversed in order.
 
 ### Primer 4 - Employees removal 
@@ -46,10 +46,10 @@ To break down the challenge:
 * Create a function to output the names
 * Crate a function to remove the name from the list 
 
-#### Challenges
+#### Reflection
 The biggest challenge for this primer was deciding which data type to use for storing the names. Firstly, I tried to use a array but as they were not dynamic I thought it wasnt efficient enough due to the extensive lines of code just to resize the array. Instead, I decided to use a list as it was in fact dynamic so a simple .remove() made the code more efficient as I didnt need a function to resize the array.
 
-### Primer 5 - Data file parser
+### Primer 5 - Phone directory
 The task was to take a csv a file that was formatted in any way. The program should then take the file and output it to the user in a formatted way.
 
 To break down the challenge:
@@ -58,8 +58,72 @@ To break down the challenge:
 * Create a function that outputs the vector
 * Create a function to see if the file exists
 
-#### Challenges 
+#### Reflection 
 The biggest challenge I faced in this primer was formatting the output of that data. In my first prototype, I tried to seperate the data from the files after every common. I had a problem with that implementation so I had to change the way I formatted the file to remove all commas. I did this by just placing each piece of data on a seperate line which made it easier to add to the vector.
+
+### Primer 6 - Data file parser
+The task was again to take data from a csv file and output it to the user. Instead the main task for this primer was to format the output so it matches the number of characters plus 1 extra. Also the names should all  start at the same point and same with the salaries. The formatting should be dynamic and change according to the length of the surname.
+
+To break down the problem:
+* Pass the file to a function
+* Create a function that assigns the contents of the file to an array
+* Create a function calculates the width and outputs the formatted data
+
+#### Reflection 
+The biggest challenge for this primer was calculating the dynamic width for the data output. I could not get the surnames to line up with the start of the characters and they would not output fully inline. All the data outputs to the screen just not in the formatted way the challenge described.
+
+### Primer 7 - Sleep timer 
+This task was to create a function that makes a thread sleep during execution. It should take an int argument for the number of seconds the thread is to sleep. 
+
+To break down the task:
+* Pass an int argument for number of seconds
+* Check if the int value is greater than 0 - if not default to 10 seconds
+
+#### Reflection
+This task was not particularly technical. It was important to meet certain conditions like a default number of seconds which had to be set to 10. It was also important to have the correct calculations for convert milliseconds into seconds for the correct sleep time.
+
+### Primer 8 - Joining and detaching threads
+PartA: 
+This task was to create two seperate threads and hardcode timers with 5 and 10 seconds as arguments. The function will display when the thread starts, will call the timer and then display when the thread ends. It will then join the threads after the time has been called.
+
+PartB:
+Similarly to part A, two seperate threads will be made with the hardcoded timers for 5 and 10 seconds. However, this time the threads will be detached. The main thread start and end should still be displayed.
+
+To break down the problem:
+*  Create two threads to be detached
+*  Have the threads sleep for 5 or 10 seconds
+*  Either detach or join the thread
+*  Display the start and end of 2 threads plus the main thread
+
+#### Reflection
+For part A the goal was to display the start and end times off each thread. The approach was to call a function and display the main thread start time and then call the a function to make two more threads, then joining them and displaying the end time of all the threads.
+
+For part B again very similar, I had to call the same functions but instead of joining the two threads the program would detach them instead, then displaying the end time of each threads.
+
+### Primer 9 - Car class
+The task of this primer was to create a class for a car including both private and public properties with methods like getters and setters along with other methods to change the properties of the car. The car would have a set of default values and the user was displayed with a menu where they can choose options e.g. turn engine on. This would be continued until the user entered 0.
+
+To break down the problem: 
+* Create a car class - including all properties
+* Create methods to get or set the properties
+* Create methods to alter the status of the car
+* Create instance of the car and allow the user to prompt a method
+
+#### Reflection
+One problem I had was not making the menu part of the class. It made coding the solution a little harder as I couldnt directly access the private properties. However, I understand that this is the best practice as it stops the user from changing variables they should not have access to. It was difficult deciding what should be in the private and public sections of the class as the car instantiation would be in the constructor, default values had to be set.
+
+
+### Primer 10 - Area of
+This primer focused on having just one class for calculating 3 different areas based on the arguments passed to the constructor. It should be just a single class and a method named size that calculates the area of the shape. For this challenge the shapes I chose were square, rectangle and trapezoid.
+
+To break down the problem:
+* Create the area class
+* Create a method that calculates the area of 3 different shapes(depending on the arguments passed)
+
+
+#### Reflection 
+When approaching this task I decided to choose 3 shapes that would require 3 different arguments to calculate the area. This was the easiest way to differentiate between the shapes. When initialising the area class, you could pass the constructor up to 3 arguments, any arguments not passed had a default value of 0. This is how I would know which area to calculate, using a variety of if statements, if a argument was 0 then it couldnt be that shape.
+
 ..  
 ..  
 
